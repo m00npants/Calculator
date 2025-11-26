@@ -3,3 +3,25 @@ just a small calculator ive done for school
 workning on a new visual calculator.
 
 also includes .jar so you can start it throu the file newcalculator.jar
+
+```mermaid
+flowchart TD
+    A[Start: Button Pressed] --> B{Is it a digit?}
+    B -- Yes --> C[Append digit to display]
+    B -- No --> D{Is it Clear?}
+    D -- Yes --> E[Reset display, num1, operator]
+    D -- No --> F{Is it Equals?}
+    F -- Yes --> G[Parse num2 from display\nPerform calculation based on operator]
+    G --> H[Show result\nReset operator]
+    F -- No --> I{Is it sqrt?}
+    I -- Yes --> J[Compute square root of display value]
+    I -- No --> K{Is it factorial ! ?}
+    K -- Yes --> L[Compute factorial of display value]
+    K -- No --> M[Operator + - * / ^ %]
+    M --> N[Store num1 = display value\nSet operator = cmd\nClear display]
+    C --> O[End]
+    E --> O
+    H --> O
+    J --> O
+    L --> O
+    N --> O
