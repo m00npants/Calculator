@@ -51,45 +51,59 @@ public class newcalculator extends JFrame implements ActionListener {
 
         try {
             if ("0123456789".contains(cmd)) {
+                // puts the information on the display
                 display.setText(display.getText() + cmd);
             } else if (cmd.equals("C")) {
+                // Rensa allt
                 display.setText("");
                 num1 = 0;
                 operator = "";
             } else if (cmd.equals("=")) {
-                double num2 = Double.parseDouble(display.getText());
+                // gets the information from the display
+                String expression = display.getText();
                 double result = 0;
 
-                switch (operator) {
-                    case "+": result = num1 + num2; break;
-                    case "-": result = num1 - num2; break;
-                    case "*": result = num1 * num2; break;
-                    case "/": result = num1 / num2; break;
-                    case "^": result = Math.pow(num1, num2); break;
-                    case "%": result = num1 % num2; break;
+                if (operator.length() > 0) {
+                    // Dela upp på operatorn
+                    String[] parts = expression.split("\\" + operator);
+                    if (parts.length == 2) {
+                        double num1 = Double.parseDouble(parts[0]);
+                        double num2 = Double.parseDouble(parts[1]);
+
+                        switch (operator) {
+                            case "+": result = num1 + num2; break;
+                            case "-": result = num1 - num2; break;
+                            case "*": result = num1 * num2; break;
+                            case "/": result = num1 / num2; break;
+                            case "^": result = Math.pow(num1, num2); break;
+                            case "%": result = num1 % num2; break;
+                        }
+                    }
                 }
 
-                display.setText(String.valueOf(result));
+                // shows the entire calculation
+                display.setText(expression + "=" + result);
                 operator = "";
             } else if (cmd.equals("sqrt")) {
                 double val = Double.parseDouble(display.getText());
-                display.setText(String.valueOf(Math.sqrt(val)));
+                display.setText("sqrt(" + val + ")=" + Math.sqrt(val));
             } else if (cmd.equals("!")) {
                 int n = Integer.parseInt(display.getText());
                 long fact = 1;
                 for (int i = 1; i <= n; i++) fact *= i;
-                display.setText(String.valueOf(fact));
+                display.setText(n + "!=" + fact);
             } else { // operator
-                num1 = Double.parseDouble(display.getText());
                 operator = cmd;
-                display.setText("");
+                // shows the operator instead of removing it
+                display.setText(display.getText() + operator);
             }
         } catch (Exception ex) {
             display.setText("Error");
         }
     }
 
-     static void main() {
+
+    static void main() {
         new newcalculator();
     }
 }
