@@ -10,6 +10,10 @@ public class newcalculator extends JFrame implements ActionListener {
     private String operator = "";
     private double num1 = 0;
 
+
+
+
+
     public newcalculator() {
         setTitle("Andreas Calculator");
         setSize(350, 450);
@@ -21,8 +25,21 @@ public class newcalculator extends JFrame implements ActionListener {
         display.setEditable(false);
         display.setFont(new Font("Arial", Font.BOLD, 28));
         display.setHorizontalAlignment(JTextField.RIGHT);
-        display.setPreferredSize(new Dimension(350, 60));
+        display.setPreferredSize(new Dimension(350, 90));
+
+        display.setForeground(Color.BLACK);
+        display.setBackground(Color.LIGHT_GRAY);
+
+
         add(display, BorderLayout.NORTH);
+
+
+
+
+
+
+
+
 
         // grids for the numbers and actions
         JPanel panel = new JPanel(new GridLayout(5, 4, 5, 5));
@@ -39,6 +56,10 @@ public class newcalculator extends JFrame implements ActionListener {
             btn.setFont(new Font("Arial", Font.BOLD, 20));
             btn.addActionListener(this);
             panel.add(btn);
+
+            btn.setBackground(Color.LIGHT_GRAY);
+            btn.setForeground(Color.BLACK);
+            panel.setBackground(Color.DARK_GRAY);
         }
 
         add(panel, BorderLayout.CENTER);
@@ -48,6 +69,7 @@ public class newcalculator extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
+
 
         try {
             if ("0123456789".contains(cmd)) {
