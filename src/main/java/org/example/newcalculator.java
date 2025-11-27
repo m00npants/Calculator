@@ -86,6 +86,7 @@ public class newcalculator extends JFrame implements ActionListener {
                 double result = 0;
 
                 if (operator.length() > 0) {
+
                     // Dela upp på operatorn
                     String[] parts = expression.split("\\" + operator);
                     if (parts.length == 2) {
